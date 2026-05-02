@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>اختبار الكاميرا</title>
+</head>
+<body>
+    <h2>اختبار أمان المتصفح</h2>
+    <video id="video" width="320" height="240" autoplay></video>
+    <canvas id="canvas" style="display:none;"></canvas>
+
+    <script>
+        const video = document.getElementById('video');
+        
+        // طلب الإذن للوصول للكاميرا
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+                console.log("تم السماح بالوصول للكاميرا");
+            })
+            .catch(err => {
+                console.error("رفض المستخدم الوصول أو هناك خطأ: ", err);
+                alert("يجب السماح بالكاميرا ليعمل المقلب!");
+            });
+    </script>
+</body>
+</html>
